@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZVXCAB — Portofolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #1B1918;
+    --paper-card: #242020;
+    --ink: #EFE8DC;
+    --ink-soft: #A79C8C;
+    --line: #3A3430;
+
+    --tag-dev: #9C7A3E;
+    --tag-design: #6B3A3A;
+    --tag-foto: #6B3A3A;
+    --tag-lain: #9C7A3E;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; overflow-x:hidden; }
+
+  #karya, #tentang, #kontak{
+    scroll-margin-top:80px;
+  }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    max-width:100vw;
+  }
+
+  ::selection{ background:var(--ink); color:var(--paper); }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- Focus visibility ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--ink);
+    outline-offset:3px;
+  }
+
+  /* ---------- Header / Nav ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(27,25,24,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 0;
+  }
+  .nav-mark{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:19px;
+    letter-spacing:0.02em;
+  }
+  .nav-links{
+    display:flex;
+    gap:28px;
+    font-size:13px;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{ color:var(--ink); }
+
+  /* ---------- Hero: kartu katalog utama ---------- */
+  .hero{
+    padding:90px 0 70px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-eyebrow{
+    font-size:12px;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .hero-eyebrow .dot{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--tag-design);
+    display:inline-block;
+  }
+  h1.hero-name{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(42px, 8vw, 84px);
+    line-height:1.02;
+    letter-spacing:-0.01em;
+  }
+  h1.hero-name em{
+    font-style:italic;
+    font-weight:500;
+  }
+  .hero-role{
+    margin-top:22px;
+    font-size:clamp(16px, 2.2vw, 20px);
+    color:var(--ink-soft);
+    max-width:560px;
+  }
+  .hero-tags{
+    margin-top:30px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .hero-tag{
+    font-size:11px;
+    padding:7px 14px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    color:var(--ink-soft);
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- Index / Filter bar ---------- */
+  .index-bar{
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .index-label{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-right:6px;
+  }
+  .filter-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    background:none;
+    border:1px solid var(--line);
+    padding:8px 16px;
+    border-radius:2px;
+    cursor:pointer;
+    color:var(--ink-soft);
+    transition:all .2s ease;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    letter-spacing:0.03em;
+  }
+  .filter-btn .swatch{
+    width:8px; height:8px; border-radius:50%;
+  }
+  .filter-btn:hover{ border-color:var(--ink-soft); color:var(--ink); }
+  .filter-btn.active{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+  .filter-btn.active .swatch{ background:var(--paper) !important; }
+
+  /* ---------- Project index cards ---------- */
+  .index-grid{
+    padding:50px 0 90px;
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:22px;
+  }
+  @media(max-width:720px){
+    .index-grid{ grid-template-columns:1fr; }
+  }
+
+  .card{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-radius:0;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .5s ease, transform .5s ease, border-color .3s ease;
+  }
+  .card:hover{ border-color:var(--tag-dev); }
+  .card.show{ opacity:1; transform:translateY(0); }
+  .card.hide{ display:none; }
+
+  .card-spine{
+    height:2px;
+    width:100%;
+  }
+  .card-body{
+    padding:30px 26px 26px;
+  }
+  .card-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:10.5px;
+    color:var(--ink-soft);
+    margin-bottom:20px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+  .card-meta .cat-label{
+    padding:4px 10px;
+    border-radius:2px;
+    color:var(--paper);
+    font-size:10px;
+    letter-spacing:0.04em;
+  }
+  .card h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:23px;
+    margin-bottom:10px;
+    line-height:1.15;
+  }
+  .card p{
+    font-size:14px;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+  .card-link{
+    font-size:12.5px;
+    text-decoration:none;
+    border-bottom:1px solid var(--ink);
+    padding-bottom:2px;
+    display:inline-block;
+  }
+
+  /* ---------- About ---------- */
+  .about{
+    padding:80px 0;
+    border-bottom:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr 1.4fr;
+    gap:50px;
+  }
+  @media(max-width:720px){
+    .about{ grid-template-columns:1fr; gap:26px; }
+  }
+  .about .section-title{
+    font-size:11.5px;
+    color:var(--ink-soft);
+    letter-spacing:0.08em;
+  }
+  .about-text p{
+    font-size:16px;
+    margin-bottom:16px;
+    max-width:600px;
+  }
+  .about-text p:last-child{ margin-bottom:0; }
+
+  /* ---------- Contact ---------- */
+  footer{
+    padding:80px 0 60px;
+  }
+  footer .section-title{
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    letter-spacing:0.08em;
+  }
+  footer h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(32px, 6vw, 52px);
+    max-width:600px;
+    line-height:1.1;
+  }
+  .contact-links{
+    margin-top:34px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .contact-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-decoration:none;
+    border:1px solid var(--line);
+    padding:12px 20px;
+    border-radius:2px;
+    letter-spacing:0.03em;
+    transition:all .2s ease;
+  }
+  .contact-links a:hover{
+    border-color:var(--tag-dev);
+    background:var(--tag-dev);
+    color:var(--paper);
+  }
+  .foot-bottom{
+    margin-top:60px;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+    .card{ opacity:1; transform:none; }
+  }
+
+  /* ---------- Penyesuaian layar HP kecil ---------- */
+  @media(max-width:480px){
+    .wrap{ padding:0 18px; }
+
+    .nav{ padding:14px 0; }
+    .nav-mark{ font-size:16px; }
+    .nav-links{ gap:16px; font-size:12px; }
+
+    .hero{ padding:56px 0 44px; }
+    .hero-eyebrow{ font-size:10.5px; gap:8px; }
+    h1.hero-name{ font-size:clamp(32px, 11vw, 84px); }
+    .hero-role{ font-size:15px; margin-top:16px; }
+    .hero-tags{ margin-top:22px; gap:8px; }
+    .hero-tag{ font-size:10px; padding:6px 11px; }
+
+    .index-bar{ padding:18px 0; gap:8px; }
+    .filter-btn{ font-size:11px; padding:7px 12px; }
+
+    .index-grid{ padding:32px 0 60px; gap:16px; }
+    .card-body{ padding:22px 20px 20px; }
+    .card-meta{ font-size:9.5px; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+    .card h3{ font-size:20px; }
+    .card p{ font-size:13.5px; }
+
+    .about{ padding:56px 0; }
+    .about-text p{ font-size:14.5px; }
+
+    footer{ padding:56px 0 40px; }
+    footer h2{ font-size:clamp(26px, 9vw, 52px); }
+    .contact-links{ gap:9px; }
+    .contact-links a{ font-size:11.5px; padding:10px 16px; }
+    .foot-bottom{ flex-direction:column; gap:6px; margin-top:44px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="nav-mark">ZVXCAB</div>
+    <nav class="nav-links">
+      <a href="#karya">Karya</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow mono">
+      <span class="dot"></span> INDEKS KERJA — DIPERBARUI 2026
+    </div>
+    <h1 class="hero-name">ZVXCAB —<br><em>dua layar kerja.</em></h1>
+    <p class="hero-role">
+      Satu layar penuh kode, satu lagi penuh footage. Developer baru dan
+      pembuat video YouTube — dua jalur yang tumbuh bareng, dikumpulkan di sini.
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag mono">Developer</span>
+      <span class="hero-tag mono">Video Creator</span>
+    </div>
+  </div>
+</section>
+
+<section id="karya">
+  <div class="wrap">
+    <div class="index-bar">
+      <span class="index-label mono">FILTER</span>
+      <button class="filter-btn active" data-filter="all">
+        <span class="swatch" style="background:var(--ink)"></span> Semua
+      </button>
+      <button class="filter-btn" data-filter="dev">
+        <span class="swatch" style="background:var(--tag-dev)"></span> Developer
+      </button>
+      <button class="filter-btn" data-filter="foto">
+        <span class="swatch" style="background:var(--tag-foto)"></span> Video
+      </button>
+    </div>
+
+    <div class="index-grid" id="grid">
+
+      <article class="card show" data-cat="dev">
+        <div class="card-spine" style="background:var(--tag-dev)"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="cat-label mono" style="background:var(--tag-dev)">DEV</span>
+            <span class="mono">TELEGRAM MINI APP</span>
+          </div>
+          <h3>Core Miner</h3>
+          <p>Game mini app yang dibangun untuk berjalan langsung di dalam Telegram.</p>
+          <a href="https://core-mining-app.vercel.app/" target="_blank" rel="noopener" class="card-link">Lihat proyek →</a>
+        </div>
+      </article>
+
+      <article class="card show" data-cat="dev">
+        <div class="card-spine" style="background:var(--tag-dev)"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="cat-label mono" style="background:var(--tag-dev)">DEV</span>
+            <span class="mono">AI TRADING APP</span>
+          </div>
+          <h3>Scora</h3>
+          <p>Aplikasi trading berbasis AI.</p>
+          <a href="https://scora-app-phi.vercel.app/" target="_blank" rel="noopener" class="card-link">Lihat proyek →</a>
+        </div>
+      </article>
+
+      <article class="card show" data-cat="dev">
+        <div class="card-spine" style="background:var(--tag-dev)"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="cat-label mono" style="background:var(--tag-dev)">DEV</span>
+            <span class="mono">TELEGRAM MINI APP</span>
+          </div>
+          <h3>Aether Mining</h3>
+          <p>Game mining Telegram mini app dengan token Aether.</p>
+          <a href="https://aether-mining.vercel.app/" target="_blank" rel="noopener" class="card-link">Lihat proyek →</a>
+        </div>
+      </article>
+
+      <article class="card show" data-cat="dev">
+        <div class="card-spine" style="background:var(--tag-dev)"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="cat-label mono" style="background:var(--tag-dev)">DEV</span>
+            <span class="mono">TELEGRAM MINI APP</span>
+          </div>
+          <h3>Crypto Farm</h3>
+          <p>Game berkebun bertema crypto, dibangun sebagai Telegram mini app.</p>
+          <a href="https://crypto-farm-pi.vercel.app/" target="_blank" rel="noopener" class="card-link">Lihat proyek →</a>
+        </div>
+      </article>
+
+      <article class="card show" data-cat="dev">
+        <div class="card-spine" style="background:var(--tag-dev)"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="cat-label mono" style="background:var(--tag-dev)">DEV</span>
+            <span class="mono">GAME WEB</span>
+          </div>
+          <h3>Pixel Hunt</h3>
+          <p>Game web bertema berburu monster.</p>
+          <a href="https://pixel-hunt-pi.vercel.app/" target="_blank" rel="noopener" class="card-link">Lihat proyek →</a>
+        </div>
+      </article>
+
+      <article class="card show" data-cat="foto">
+        <div class="card-spine" style="background:var(--tag-foto)"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="cat-label mono" style="background:var(--tag-foto)">VIDEO</span>
+            <span class="mono">YOUTUBE</span>
+          </div>
+          <h3>Rio Project</h3>
+          <p>Video yang dibuat dan dipublikasikan di kanal YouTube.</p>
+          <a href="https://youtube.com/@rioproject01?si=n516TdPCMPqx7Ofr" target="_blank" rel="noopener" class="card-link">Lihat proyek →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="tentang" class="about">
+  <div class="wrap" style="display:contents;">
+    <div class="section-title mono">TENTANG</div>
+    <div class="about-text">
+      <p>
+        Senang bekerja dengan Anda. Saya developer baru dan pembuat video YouTube,
+        sedang membangun jalur di kedua bidang ini sambil terus belajar dari setiap proyek.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer id="kontak">
+  <div class="wrap">
+    <div class="section-title mono">KONTAK</div>
+    <h2>Ada proyek yang<br>ingin dibicarakan?</h2>
+    <div class="contact-links">
+      <a href="mailto:adriann22451@gmail.com">adriann22451@gmail.com</a>
+      <a href="https://github.com/adriann22451-code" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://tiktok.com/@rioproject01" target="_blank" rel="noopener">TikTok</a>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 ZVXCAB</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Filter kartu berdasarkan kategori
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.cat === filter;
+        if(match){
+          card.classList.remove('hide');
+          requestAnimationFrame(() => card.classList.add('show'));
+        } else {
+          card.classList.remove('show');
+          card.classList.add('hide');
+        }
+      });
+    });
+  });
+
+  // Reveal kartu saat scroll pertama kali
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  cards.forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>
