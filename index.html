@@ -19,7 +19,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;overflow-x:hidden}
 #karya,#tentang,#kontak{scroll-margin-top:84px}
-body{background:var(--bg);color:var(--tx);font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100vw}
+body{background:var(--bg);color:var(--tx);font-family:'Rajdhani',sans-serif;font-weight:500;font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;max-width:100vw}
 ::selection{background:var(--vi);color:#fff}
 a{color:inherit}
 .wrap{max-width:1100px;margin:0 auto;padding:0 28px}
@@ -30,18 +30,18 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cy);outline-offset:
 body::before{content:"";position:fixed;inset:0;z-index:-3;background:
   radial-gradient(60% 50% at 85% 0%,rgba(143,91,255,.24),transparent 70%),
   radial-gradient(50% 40% at 0% 35%,rgba(25,227,255,.12),transparent 70%),var(--bg)}
-body::after{content:"";position:fixed;inset:0;z-index:70;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 3px)}
-.floor{position:fixed;left:-50%;right:-50%;bottom:0;height:52vh;z-index:-2;pointer-events:none;
+.floor-w{position:fixed;left:0;right:0;bottom:0;height:52vh;z-index:-2;pointer-events:none;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to top,#000,transparent 80%);mask-image:linear-gradient(to top,#000,transparent 80%)}
+.floor{position:absolute;left:-50%;right:-50%;bottom:0;height:100%;overflow:hidden;transform:perspective(520px) rotateX(64deg);transform-origin:bottom}
+.floor::before{content:"";position:absolute;left:0;right:0;top:-56px;bottom:0;will-change:transform;
   background-image:linear-gradient(rgba(143,91,255,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(143,91,255,.28) 1px,transparent 1px);
-  background-size:56px 56px;transform:perspective(520px) rotateX(64deg);transform-origin:bottom;
-  -webkit-mask-image:linear-gradient(to top,#000,transparent 80%);mask-image:linear-gradient(to top,#000,transparent 80%);
-  animation:floor 5s linear infinite}
-@keyframes floor{to{background-position:0 56px}}
+  background-size:56px 56px;animation:floor 5s linear infinite}
+@keyframes floor{to{transform:translateY(56px)}}
 #glow{position:fixed;width:460px;height:460px;left:0;top:0;margin:-230px 0 0 -230px;z-index:-1;pointer-events:none;
-  background:radial-gradient(circle,rgba(143,91,255,.16),transparent 65%);opacity:0;transition:opacity .4s}
+  background:radial-gradient(circle,rgba(143,91,255,.16),transparent 65%);opacity:0;transition:opacity .4s;will-change:transform}
 
 /* header */
-header{position:sticky;top:0;z-index:50;background:rgba(6,7,12,.78);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
+header{position:sticky;top:0;z-index:50;background:rgba(6,7,12,.94);border-bottom:1px solid var(--ln)}
 header::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:38%;background:linear-gradient(90deg,var(--cy),transparent)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
 .logo{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:20px;letter-spacing:.12em;display:flex;align-items:center;gap:10px;text-decoration:none}
@@ -110,14 +110,14 @@ h1.name::after{color:var(--pk);animation:gl2 5s infinite}
 .filter-btn.active i{background:rgba(0,0,0,.2)}
 
 /* kartu proyek */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;padding-bottom:96px;perspective:1000px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;padding-bottom:96px}
 .card{--c:var(--cy);--rx:0deg;--ry:0deg;padding:1px;background:linear-gradient(135deg,var(--c),rgba(130,150,255,.12) 55%);
   clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,var(--cut) 100%,0 calc(100% - var(--cut)));
-  opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s,filter .3s}
+  opacity:0;transform:translateY(16px);transition:opacity .5s,transform .25s}
 .card[data-cat="foto"]{--c:var(--pk)}
-.card.show{opacity:1;transform:translateY(0) rotateX(var(--rx)) rotateY(var(--ry))}
+.card.show{opacity:1;transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry))}
 .card.hide{display:none}
-.card:hover{filter:drop-shadow(0 0 16px color-mix(in srgb,var(--c) 55%,transparent))}
+.card:hover{background:var(--c)}
 .card-in{background:var(--p1);clip-path:inherit;height:100%;display:flex;flex-direction:column}
 .banner{height:118px;position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:space-between;padding:14px 20px;
   background:linear-gradient(120deg,color-mix(in srgb,var(--c) 30%,#0d1019),#0d1019 75%)}
@@ -165,7 +165,7 @@ footer h2{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:clamp(
 </style>
 </head>
 <body>
-<div class="floor"></div><div id="glow"></div>
+<div class="floor-w"><div class="floor"></div></div><div id="glow"></div>
 
 <header>
   <div class="wrap nav">
