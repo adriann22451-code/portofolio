@@ -177,7 +177,7 @@ var ray=new THREE.Raycaster(),mp=new THREE.Vector2(),mx=0,my=0,sx=0,sy=0,hov=nul
 function pick(e){mp.set(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);ray.setFromCamera(mp,cam);
   var hit=ray.intersectObjects(panels.map(function(g){return g.children[0]}))[0];return hit?hit.object.parent:null}
 addEventListener('pointermove',function(e){mx=mp.x=e.clientX/innerWidth*2-1;my=e.clientY/innerHeight*2-1;if(e.pointerType==='mouse'){hov=pick(e);document.body.style.cursor=hov&&hov.userData.url?'pointer':''}});
-addEventListener('click',function(e){if(e.target.closest('header,#intro'))return;var g=pick(e);if(g&&g.userData.url){var u=g.userData.url;u.indexOf('mailto:')===0?location.href=u:window.open(u,'_blank','noopener')}});
+addEventListener('click',function(e){if(e.target.closest('header,#intro,#nx,#hud'))return;var g=pick(e);if(g&&g.userData.url){var u=g.userData.url;u.indexOf('mailto:')===0?location.href=u:window.open(u,'_blank','noopener')}});
 
 var sp=0,tipEl=document.getElementById('tip'),zone=document.getElementById('zone'),bar=document.querySelector('#bar b'),intro=document.getElementById('intro');
 function frame(t){
