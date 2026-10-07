@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#06070c">
+<title>ZVXCAB — Portofolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06070c;--tx:#e8ecff;--dm:#8a93b8;--cy:#19e3ff;--pk:#ff3d8b;--vi:#8f5bff;--ln:rgba(130,150,255,.18)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{background:radial-gradient(60% 50% at 85% 0%,rgba(143,91,255,.28),transparent 70%),radial-gradient(50% 40% at 0% 40%,rgba(25,227,255,.14),transparent 70%),var(--bg);color:var(--tx);font:500 18px/1.5 Rajdhani,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}a:focus-visible,button:focus-visible{outline:2px solid var(--cy);outline-offset:3px}
+.hud{font-family:'Chakra Petch',sans-serif;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+#space{height:1000vh}
+header{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:max(14px,env(safe-area-inset-top)) 22px 14px;background:linear-gradient(var(--bg),transparent)}
+.logo{font:700 20px 'Chakra Petch',sans-serif;letter-spacing:.12em;text-decoration:none;display:flex;gap:10px;align-items:center}
+.logo i{width:14px;height:14px;background:linear-gradient(135deg,var(--cy),var(--vi));clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);box-shadow:0 0 12px var(--cy)}
+nav{display:flex;gap:22px}nav a{color:var(--dm);text-decoration:none;cursor:pointer;transition:color .2s}nav a:hover{color:var(--cy)}
+#intro{position:fixed;z-index:4;left:max(22px,5vw);top:50%;transform:translateY(-50%);width:min(560px,90vw);pointer-events:none}
+#intro>*{pointer-events:auto}
+.tag{color:var(--cy);margin-bottom:18px;display:flex;gap:10px;align-items:center}.tag::before{content:"";width:34px;height:2px;background:var(--cy);box-shadow:0 0 10px var(--cy)}
+h1{font:700 clamp(54px,12vw,120px)/.95 'Chakra Petch',sans-serif;letter-spacing:.02em;text-shadow:0 0 40px rgba(143,91,255,.5)}
+.sub{font:600 clamp(22px,4vw,34px) 'Chakra Petch',sans-serif;margin-top:10px;background:linear-gradient(90deg,var(--cy),var(--vi),var(--pk));-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{margin-top:16px;color:var(--dm);max-width:460px}
+.btn{display:inline-block;margin-top:26px;padding:13px 24px;background:var(--cy);color:#04060b;font:600 13px 'Chakra Petch',sans-serif;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:0;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+#hud{position:fixed;z-index:5;left:22px;right:22px;bottom:max(16px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:center;color:var(--dm);pointer-events:none}
+#bar{position:relative;flex:1;max-width:220px;height:2px;background:var(--ln)}#bar b{position:absolute;left:0;top:0;height:2px;width:0;background:var(--cy);box-shadow:0 0 8px var(--cy)}
+#tip{position:fixed;z-index:5;left:50%;bottom:54px;transform:translateX(-50%);color:var(--cy);pointer-events:none;transition:opacity .4s}
+#fb{display:none;padding:90px 22px 40px;max-width:700px;margin:auto}#fb a{display:block;padding:14px 0;border-bottom:1px solid var(--ln);text-decoration:none}#fb b{display:block;font:600 22px 'Chakra Petch',sans-serif}#fb span{color:var(--dm)}
+body.nogl #gl,body.nogl #space,body.nogl #intro,body.nogl #hud,body.nogl #tip{display:none}body.nogl #fb{display:block}
+@media(max-width:600px){nav{gap:14px}.logo{font-size:17px}#intro{top:46%}}
+</style>
+</head>
+<body>
+<header><a class="logo" href="#"><i></i>ZVXCAB</a><nav class="hud"><a data-go="karya">Karya</a><a data-go="tentang">Tentang</a><a data-go="kontak">Kontak</a></nav></header>
+<canvas id="gl" aria-label="Portofolio ZVXCAB dalam ruang 3D"></canvas>
+<section id="intro">
+  <div class="tag hud">Indeks kerja — diperbarui 2026</div>
+  <h1>ZVXCAB</h1>
+  <div class="sub">dua layar kerja.</div>
+  <p class="role">Satu layar penuh kode, satu lagi penuh footage. Developer baru dan pembuat video YouTube — dua jalur yang tumbuh bareng, dikumpulkan di sini.</p>
+  <a class="btn" data-go="karya">▶ Masuk ke karya</a>
+</section>
+<div id="tip" class="hud">Scroll untuk menjelajah · klik panel untuk membuka</div>
+<div id="hud" class="hud"><span id="zone">Hero</span><div id="bar"><b></b></div><span>© 2026 ZVXCAB</span></div>
+<div id="space"></div>
+<div id="fb"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var CY=0x19e3ff,PK=0xff3d8b,VI=0x8f5bff;
+var P=[
+["Telegram Mini App","Core Miner","Game mini app yang dibangun untuk berjalan langsung di dalam Telegram.","https://core-mining-app.vercel.app/"],
+["AI Trading App","Scora","Aplikasi trading berbasis AI.","https://scora-app-phi.vercel.app/"],
+["Telegram Mini App","Aether Mining","Game mining Telegram mini app dengan token Aether.","https://aether-mining.vercel.app/"],
+["Telegram Mini App","Crypto Farm","Game berkebun bertema crypto, dibangun sebagai Telegram mini app.","https://crypto-farm-pi.vercel.app/"],
+["Game Web","Pixel Hunt","Game web bertema berburu monster.","https://pixel-hunt-pi.vercel.app/"],
+["AI Agent Builder","AI Agent Office","Web app untuk membangun AI agent langsung dari browser, tanpa perlu instalasi.","https://ai-agent-office-ivory.vercel.app/"],
+["Game Web","Monster Researcher","Game web bertema peneliti monster, bisa dimainkan langsung di browser.","https://monster-researcher.vercel.app/"],
+["Tools","Vid2 Sprite","Tools web untuk mengubah video menjadi sprite sheet yang siap dipakai di game.","https://vid2-sprite.vercel.app/"],
+["Mini 3D","Jet Showroom 3D","Showroom 3D interaktif berisi model jet tempur dan pembom, dibuat dari kode dengan Three.js.","https://adriann22451-code.github.io/Jet_showroom3D/"],
+["YouTube","Rio Project","Video yang dibuat dan dipublikasikan di kanal YouTube.","https://youtube.com/@rioproject01?si=n516TdPCMPqx7Ofr"]];
+var C=[["Kontak","Email","adriann22451@gmail.com","mailto:adriann22451@gmail.com"],["Kontak","GitHub","github.com/adriann22451-code","https://github.com/adriann22451-code"],["Kontak","TikTok","@rioproject01","https://tiktok.com/@rioproject01"]];
+var ABOUT="Senang bekerja dengan Anda. Saya developer baru dan pembuat video YouTube, sedang membangun jalur di kedua bidang ini sambil terus belajar dari setiap proyek.";
+
+var ok=false;try{var pc=document.createElement('canvas');ok=!!(window.THREE&&(pc.getContext('webgl')||pc.getContext('experimental-webgl')))}catch(e){}
+if(!ok){document.body.classList.add('nogl');
+  document.getElementById('fb').innerHTML=P.concat(C).map(function(p){return '<a href="'+p[3]+'" target="_blank" rel="noopener"><b>'+p[1]+'</b><span>'+p[2]+'</span></a>'}).join('');return}
+
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var R=new THREE.WebGLRenderer({canvas:document.getElementById('gl'),antialias:true,alpha:true});
+R.setPixelRatio(Math.min(devicePixelRatio||1,1.5));R.setClearColor(0,0);
+var S=new THREE.Scene();S.fog=new THREE.FogExp2(0x06070c,.045);
+var cam=new THREE.PerspectiveCamera(60,1,.1,140);
+function rnd(n){var s=Math.sin(n*127.1)*43758.5453;return s-Math.floor(s)}
+
+/* dunia: lantai, kristal, partikel */
+var grid=new THREE.GridHelper(200,200,VI,VI);grid.position.y=-3;grid.material.transparent=true;grid.material.opacity=.4;S.add(grid);
+var G=[new THREE.OctahedronGeometry(.8),new THREE.IcosahedronGeometry(.7),new THREE.TetrahedronGeometry(.9),new THREE.BoxGeometry(.9,.9,.9)],cols=[CY,VI,PK],sh=[];
+for(var i=0;i<48;i++){var m=new THREE.LineSegments(new THREE.EdgesGeometry(G[i%4]),new THREE.LineBasicMaterial({color:cols[i%3],transparent:true,opacity:.6}));
+  var sd=i%2?1:-1,bx=sd*(5+rnd(i+1)*8);m.position.set(bx,-1.5+rnd(i+9)*8,2-i*2.1);m.scale.setScalar(.7+rnd(i+20)*1.5);
+  m.userData={bx:bx,by:m.position.y,a:(rnd(i+31)-.5)*.6,b:(rnd(i+42)-.5)*.6,ph:rnd(i+53)*6};S.add(m);sh.push(m)}
+var pp=new Float32Array(900);for(var k=0;k<300;k++){pp[k*3]=(rnd(k+100)-.5)*44;pp[k*3+1]=rnd(k+200)*16-3;pp[k*3+2]=8-rnd(k+300)*110}
+var pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
+S.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0xaab4ff,size:.06,transparent:true,opacity:.7,depthWrite:false})));
+
+/* panel 3D dari canvas */
+var panels=[],redraws=[];
+function wrap(x,t,px,py,mw,lh){var l='';t.split(' ').forEach(function(w){var s=l+w+' ';if(x.measureText(s).width>mw&&l){x.fillText(l,px,py);py+=lh;l=w+' '}else l=s});x.fillText(l,px,py)}
+function panel(d,col,idx,w,h,big){
+  var c=document.createElement('canvas');c.width=big?800:640;c.height=big?400:400;var cs='#'+col.toString(16).padStart(6,'0');
+  function draw(){var x=c.getContext('2d'),W=c.width,H=c.height;
+    var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#141829');g.addColorStop(1,'#0d1019');x.fillStyle=g;x.fillRect(0,0,W,H);
+    x.fillStyle=cs;x.globalAlpha=.12;x.fillRect(0,0,W,90);x.globalAlpha=1;
+    x.strokeStyle=cs;x.lineWidth=4;x.strokeRect(2,2,W-4,H-4);
+    if(idx!=null){x.font='700 150px "Chakra Petch",sans-serif';x.strokeStyle=cs;x.globalAlpha=.35;x.lineWidth=2;x.strokeText(('0'+idx).slice(-2),W-190,140);x.globalAlpha=1}
+    x.fillStyle=cs;x.font='600 24px "Chakra Petch",sans-serif';x.fillText(d[0].toUpperCase(),34,56);
+    x.fillStyle='#e8ecff';x.font='700 '+(big?46:50)+'px "Chakra Petch",sans-serif';wrap(x,d[1],34,big?150:160,W-68,56);
+    x.fillStyle='#8a93b8';x.font='500 '+(big?30:29)+'px Rajdhani,sans-serif';wrap(x,d[2],34,big?225:235,W-68,36);
+    if(d[3]){x.fillStyle=cs;x.font='600 22px "Chakra Petch",sans-serif';x.fillText('▶ BUKA',34,H-30)}
+  }
+  draw();redraws.push(draw);
+  var t=new THREE.CanvasTexture(c);redraws.push(function(){t.needsUpdate=true});
+  var gr=new THREE.Group();
+  gr.add(new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:t,transparent:true})));
+  var gl=new THREE.Mesh(new THREE.PlaneGeometry(w*1.18,h*1.22),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.1,depthWrite:false,blending:THREE.AdditiveBlending}));gl.position.z=-.05;gr.add(gl);
+  gr.userData={url:d[3],s:1,glow:gl};S.add(gr);panels.push(gr);return gr}
+var cards=P.map(function(d,i){var gr=panel(d,i<9?(i%2?VI:CY):PK,i+1,3.2,2);return gr});
+var about=panel(["Tentang","ZVXCAB",ABOUT,null],CY,null,4.4,2.2,true);
+var contacts=C.map(function(d,i){return panel(d,[CY,VI,PK][i],null,3.2,2)});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){redraws.forEach(function(f){f()})});
+
+/* monitor hero */
+function tex(fn){var c=document.createElement('canvas');c.width=512;c.height=320;var t=new THREE.CanvasTexture(c);return{c:c,x:c.getContext('2d'),t:t,fn:fn}}
+var tc=tex(function(x,t){x.fillStyle='#080a12';x.fillRect(0,0,512,320);x.fillStyle='#141829';x.fillRect(0,0,512,26);
+  var o=Math.floor(t*2.2);for(var r=0;r<14;r++){var n=r+o,xx=46+Math.floor(rnd(n*3.1)*3)*22;x.fillStyle='rgba(138,147,184,.5)';x.fillRect(14,40+r*20,16,8);
+    for(var s=0,m=2+Math.floor(rnd(n*1.7)*3);s<m;s++){var w=26+Math.floor(rnd(n*7.3+s)*90),q=rnd(n*5.1+s*2.2);x.fillStyle=q<.33?'#19e3ff':q<.66?'#8f5bff':'#e8ecff';x.fillRect(xx,40+r*20,w,8);xx+=w+10}}});
+var tv=tex(function(x,t){x.fillStyle='#080a12';x.fillRect(0,0,512,320);var g=x.createLinearGradient(0,0,512,190);g.addColorStop(0,'#2a1240');g.addColorStop(1,'#10223a');x.fillStyle=g;x.fillRect(14,14,484,180);
+  x.fillStyle='#ff3d8b';x.beginPath();x.moveTo(236,70);x.lineTo(236,138);x.lineTo(290,104);x.fill();
+  var rows=[['#ff3d8b',[[20,120],[150,90],[255,150],[420,70]]],['#8f5bff',[[40,100],[160,200],[380,100]]],['#19e3ff',[[20,160],[200,80],[300,170]]]];
+  rows.forEach(function(r,i){x.fillStyle='rgba(255,255,255,.05)';x.fillRect(14,210+i*30,484,22);x.fillStyle=r[0];r[1].forEach(function(c){x.fillRect(c[0],212+i*30,c[1],18)})});
+  var px=20+((t*38)%460);x.fillStyle='#fff';x.fillRect(px,204,2,96)});
+var dark=new THREE.MeshBasicMaterial({color:0x0d1019}),mons=new THREE.Group();S.add(mons);
+function mon(col,tx,x){var g=new THREE.Group(),b=new THREE.BoxGeometry(2.34,1.54,.09);g.add(new THREE.Mesh(b,dark));g.add(new THREE.LineSegments(new THREE.EdgesGeometry(b),new THREE.LineBasicMaterial({color:col})));
+  var s=new THREE.Mesh(new THREE.PlaneGeometry(2.2,1.4),new THREE.MeshBasicMaterial({map:tx.t}));s.position.z=.051;g.add(s);
+  var gl=new THREE.Mesh(new THREE.PlaneGeometry(3.2,2.1),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.09,depthWrite:false,blending:THREE.AdditiveBlending}));gl.position.z=-.08;g.add(gl);
+  var st=new THREE.Mesh(new THREE.BoxGeometry(.1,.45,.06),dark);st.position.set(0,-1.0,-.05);g.add(st);g.position.x=x;g.rotation.y=x<0?.3:-.3;mons.add(g)}
+mon(CY,tc,-1.3);mon(PK,tv,1.3);
+var gem=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.OctahedronGeometry(.45)),new THREE.LineBasicMaterial({color:CY}));gem.position.y=1.6;mons.add(gem);
+
+/* tata letak + ukuran */
+var END=96,wide=true;
+function layout(){var w=innerWidth,h=innerHeight,a=w/h;wide=a>1;R.setSize(w,h,false);cam.aspect=a;cam.updateProjectionMatrix();
+  var f=Math.min(1,a*1.1),dx=wide?2.7:1.0;
+  cards.forEach(function(g,i){var s=i%2?1:-1;g.position.set(s*dx,wide?0:(i%2?-.4:.4),-10-i*6.5);g.userData.ry=-s*.32;g.userData.base=g.position.y;g.userData.sc=wide?1:.62});
+  about.position.set(0,0,-82);about.userData.ry=0;about.userData.base=0;about.userData.sc=wide?1:.85;
+  contacts.forEach(function(g,i){g.position.set(wide?(i-1)*3.7:0,wide?0:(1-i)*1.5,-94);g.userData.ry=wide?(1-i)*.2:0;g.userData.base=g.position.y;g.userData.sc=wide?.9:.58});
+  sh.forEach(function(m){m.position.x=m.userData.bx*f});
+  mons.position.set(wide?2.9:0,wide?0:-1.55,-4);mons.userData={sc:wide?1:.55};mons.scale.setScalar(mons.userData.sc);
+  scene0()}
+function scene0(){}
+addEventListener('resize',function(){layout();if(reduce)frame(0)});layout();
+
+/* navigasi */
+function frac(name){return name==='karya'?10/END*.82:name==='tentang'?(82-6)/END:1}
+function go(n){var m=document.documentElement.scrollHeight-innerHeight;scrollTo({top:frac(n)*m,behavior:reduce?'auto':'smooth'})}
+document.querySelectorAll('[data-go]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();go(a.dataset.go)})});
+document.querySelector('.logo').addEventListener('click',function(e){e.preventDefault();scrollTo({top:0,behavior:'smooth'})});
+
+/* input + raycast */
+var ray=new THREE.Raycaster(),mp=new THREE.Vector2(),mx=0,my=0,sx=0,sy=0,hov=null;
+function pick(e){mp.set(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);ray.setFromCamera(mp,cam);
+  var hit=ray.intersectObjects(panels.map(function(g){return g.children[0]}))[0];return hit?hit.object.parent:null}
+addEventListener('pointermove',function(e){mx=mp.x=e.clientX/innerWidth*2-1;my=e.clientY/innerHeight*2-1;if(e.pointerType==='mouse'){hov=pick(e);document.body.style.cursor=hov&&hov.userData.url?'pointer':''}});
+addEventListener('click',function(e){if(e.target.closest('header,#intro'))return;var g=pick(e);if(g&&g.userData.url){var u=g.userData.url;u.indexOf('mailto:')===0?location.href=u:window.open(u,'_blank','noopener')}});
+
+var sp=0,tipEl=document.getElementById('tip'),zone=document.getElementById('zone'),bar=document.querySelector('#bar b'),intro=document.getElementById('intro');
+function frame(t){
+  var m=document.documentElement.scrollHeight-innerHeight,tg=m>0?Math.min(1,Math.max(0,scrollY/m)):0;sp+=(tg-sp)*(reduce?1:.07);
+  var z=6-sp*(END-4)*1,sw=Math.sin(sp*26)*.5;sx+=(mx-sx)*.05;sy+=(my-sy)*.05;
+  cam.position.set(sw+sx*.9,1.1+Math.sin(sp*13)*.25-sy*.3,z);cam.lookAt(sw*.4+sx*.5,.3,z-9);cam.rotation.z+=Math.sin(sp*26)*.03;
+  grid.position.z=Math.round(z);
+  sh.forEach(function(s){var u=s.userData;s.rotation.x=t*u.a;s.rotation.y=t*u.b;s.position.y=u.by+Math.sin(t*.6+u.ph)*.35});
+  panels.forEach(function(g,i){var u=g.userData,tgt=(g===hov?1.1:1)*u.sc;u.s+=(tgt-u.s)*.12;g.scale.setScalar(u.s);
+    g.rotation.y=u.ry+Math.sin(t*.5+i)*.04+(g===hov?-u.ry*.4:0);g.position.y=u.base+Math.sin(t*.8+i*1.7)*.1;u.glow.material.opacity=g===hov?.22:.1});
+  mons.rotation.y=Math.sin(t*.4)*.12;mons.position.y=(wide?0:-1.55)+Math.sin(t*.9)*.08;gem.rotation.y=t;gem.rotation.x=t*.5;
+  if(Math.floor(t*8)!==frame.l||reduce){frame.l=Math.floor(t*8);tc.fn(tc.x,t);tc.t.needsUpdate=true;tv.fn(tv.x,t);tv.t.needsUpdate=true}
+  var o=Math.max(0,1-sp*22);intro.style.opacity=o;intro.style.visibility=o>0?'visible':'hidden';tipEl.style.opacity=o;
+  bar.style.width=sp*100+'%';var zs=z<-6&&z>-70?'Karya':z<=-70&&z>-90?'Tentang':z<=-90?'Kontak':'Hero';zone.textContent=zs;
+  R.render(S,cam)}
+if(reduce){frame(0);var pend=0;addEventListener('scroll',function(){if(pend)return;pend=1;requestAnimationFrame(function(){pend=0;frame(0)})},{passive:true})}
+else{var t0=performance.now(),run=true;(function loop(n){if(!run)return;frame((n-t0)/1000);requestAnimationFrame(loop)})(t0);
+  document.addEventListener('visibilitychange',function(){if(document.hidden)run=false;else if(!run){run=true;requestAnimationFrame(function l(n){if(!run)return;frame((n-t0)/1000);requestAnimationFrame(l)})}})}
+})();
+</script>
+</body>
+</html>
